@@ -1,32 +1,28 @@
 import 'package:bio_metrics/app/pages/blood_pressure.dart';
 import 'package:bio_metrics/app/pages/blood_sugar_page.dart';
 import 'package:bio_metrics/app/pages/weight_page.dart';
+import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-class PageShell extends StatefulWidget {
+class PageShell extends ConsumerStatefulWidget {
   const PageShell({super.key});
 
   @override
-  State<PageShell> createState() => _PageShellState();
+  ConsumerState<PageShell> createState() => _PageShellState();
 }
 
-class _PageShellState extends State<PageShell> {
+class _PageShellState extends ConsumerState<PageShell> {
   PageController _pageController = PageController();
-  int currentPage = 0;
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var appState = ref.watch(appStateProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(switch (currentPage) {
+        title: Text(switch (appState.currentPageIndex) {
           0 => "Blood Pressure",
           1 => "Blood Sugar",
           2 => "Weight",
@@ -75,21 +71,23 @@ class _PageShellState extends State<PageShell> {
   }
 }
 
-class NavigationButton extends StatelessWidget {
+class NavigationButton extends ConsumerWidget {
   final int pageIndex;
-  final PageController pageController;
   final IconData icon;
+  final PageController pageController;
   const NavigationButton(
       {super.key,
-      required this.pageController,
       required this.pageIndex,
+      required this.pageController,
       required this.icon});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var appStateActions = ref.watch(appStateProvider.notifier);
     return IconButton(
         onPressed: () {
-          pageController.jumpToPage(pageIndex);
+          pageController.page!.toInt();
+          appStateActions.changePageIndex(pageIndex);
         },
         icon: Icon(
           icon,
