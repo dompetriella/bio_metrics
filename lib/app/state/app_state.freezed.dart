@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AppStateData {
+  User? get user => throw _privateConstructorUsedError;
   int get currentPageIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,7 @@ abstract class $AppStateDataCopyWith<$Res> {
           AppStateData value, $Res Function(AppStateData) then) =
       _$AppStateDataCopyWithImpl<$Res, AppStateData>;
   @useResult
-  $Res call({int currentPageIndex});
+  $Res call({User? user, int currentPageIndex});
 }
 
 /// @nodoc
@@ -45,9 +46,14 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? user = freezed,
     Object? currentPageIndex = null,
   }) {
     return _then(_value.copyWith(
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       currentPageIndex: null == currentPageIndex
           ? _value.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
@@ -64,7 +70,7 @@ abstract class _$$AppStateDataImplCopyWith<$Res>
       __$$AppStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int currentPageIndex});
+  $Res call({User? user, int currentPageIndex});
 }
 
 /// @nodoc
@@ -78,9 +84,14 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? user = freezed,
     Object? currentPageIndex = null,
   }) {
     return _then(_$AppStateDataImpl(
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
       currentPageIndex: null == currentPageIndex
           ? _value.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
@@ -92,15 +103,18 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppStateDataImpl implements _AppStateData {
-  _$AppStateDataImpl({this.currentPageIndex = 0});
+  _$AppStateDataImpl({this.user = null, this.currentPageIndex = 0});
 
+  @override
+  @JsonKey()
+  final User? user;
   @override
   @JsonKey()
   final int currentPageIndex;
 
   @override
   String toString() {
-    return 'AppStateData(currentPageIndex: $currentPageIndex)';
+    return 'AppStateData(user: $user, currentPageIndex: $currentPageIndex)';
   }
 
   @override
@@ -108,12 +122,13 @@ class _$AppStateDataImpl implements _AppStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppStateDataImpl &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.currentPageIndex, currentPageIndex) ||
                 other.currentPageIndex == currentPageIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentPageIndex);
+  int get hashCode => Object.hash(runtimeType, user, currentPageIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -123,8 +138,11 @@ class _$AppStateDataImpl implements _AppStateData {
 }
 
 abstract class _AppStateData implements AppStateData {
-  factory _AppStateData({final int currentPageIndex}) = _$AppStateDataImpl;
+  factory _AppStateData({final User? user, final int currentPageIndex}) =
+      _$AppStateDataImpl;
 
+  @override
+  User? get user;
   @override
   int get currentPageIndex;
   @override

@@ -1,6 +1,9 @@
 import 'package:bio_metrics/app/app.dart';
+import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:bio_metrics/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,22 +18,19 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: SafeArea(child: const BasePage()));
+        home: SafeArea(child: const LoginPage()));
   }
 }
 
-class BasePage extends StatefulWidget {
-  const BasePage({super.key});
+class LoginPage extends HookConsumerWidget {
+  const LoginPage({super.key});
 
   @override
-  State<BasePage> createState() => _BasePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    var appStateActions = ref.watch(appStateProvider.notifier);
 
-class _BasePageState extends State<BasePage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  @override
-  Widget build(BuildContext context) {
+    var emailState = useState('');
+    var passwordState = useState('');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -54,13 +54,13 @@ class _BasePageState extends State<BasePage> {
                 child: Column(
                   children: [
                     TextField(
-                      controller: emailController,
                       decoration: InputDecoration(hintText: "Email Address"),
+                      onChanged: (value) => emailState.value = value,
                     ),
                     TextField(
-                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(hintText: "Password"),
+                      onChanged: (value) => passwordState.value = value,
                     ),
                   ],
                 ),
@@ -72,9 +72,10 @@ class _BasePageState extends State<BasePage> {
                   onPressed: () async {
                     AuthResponse response = await supabase.auth
                         .signInWithPassword(
-                            email: emailController.text,
-                            password: passwordController.text);
+                            email: emailState.value,
+                            password: passwordState.value);
                     if (response.user != null && response.session != null) {
+                      appStateActions.setUserState(response.user);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

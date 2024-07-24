@@ -1,4 +1,4 @@
-import 'package:bio_metrics/app/base_page.dart';
+import 'package:bio_metrics/app/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
