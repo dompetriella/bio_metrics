@@ -86,7 +86,7 @@ class WeightEntry extends HookConsumerWidget {
             onPressed: () async {
               WeightData weightData = WeightData(
                   userId: appState.user!.id, weight: weightState.value);
-              await addWeightEntryToDatabase(weightData, context)
+              await addWeightEntryToDatabase(weightData, context, ref)
                   .then((value) => Navigator.pop(context));
             },
             child: Text("Enter"))
@@ -102,7 +102,7 @@ class BiometricsWeightDataTable extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var bloodPressureList = ref.watch(appStateProvider).bloodPressureData;
+    var weightList = ref.watch(appStateProvider).weightData;
     return Flexible(
       child: Container(
         decoration: BoxDecoration(
@@ -110,7 +110,7 @@ class BiometricsWeightDataTable extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView.builder(
-            itemCount: bloodPressureList.length,
+            itemCount: weightList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -126,12 +126,11 @@ class BiometricsWeightDataTable extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(DateFormat(DateTime.now().day ==
-                                          bloodPressureList[index].dateTime!.day
+                                          weightList[index].dateTime!.day
                                       ? 'MM/dd/yy'
                                       : "h:mma")
-                                  .format(bloodPressureList[index].dateTime!)),
-                              Text(
-                                  '${bloodPressureList[index].systolicBloodPressure}/${bloodPressureList[index].diastolicBloodPressure}'),
+                                  .format(weightList[index].dateTime!)),
+                              Text('${weightList[index].weight}'),
                               Text('----')
                             ],
                           ),

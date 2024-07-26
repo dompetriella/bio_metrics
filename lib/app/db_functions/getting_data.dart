@@ -1,5 +1,6 @@
 import 'package:bio_metrics/app/models/blood_pressure_data.dart';
 import 'package:bio_metrics/app/models/blood_sugar_data.dart';
+import 'package:bio_metrics/app/models/weight_data.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:bio_metrics/main.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,29 @@ Future getBloodSugarDataFromDatabase(
       return BloodSugarData.fromJson(bloodSugarJson);
     }).toList();
     appStateActions.setBloodSugarData(bloodSugarData);
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: Insert did not complete successfully")));
+  }
+}
+
+Future getWeightDataFromDatabase(BuildContext context, WidgetRef ref) async {
+  PostgrestResponse<List<Map<String, dynamic>>>? getResponse;
+
+  try {
+    getResponse = await supabase.from('biometrics_weight').select().count();
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: couldn't reach database")));
+  }
+
+  if (getResponse != null) {
+    var appStateActions = ref.watch(appStateProvider.notifier);
+    print('weight retrived successfully');
+    List<WeightData> weightData = getResponse.data.map((weightDataJson) {
+      return WeightData.fromJson(weightDataJson);
+    }).toList();
+    appStateActions.setWeightData(weightData);
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: Insert did not complete successfully")));

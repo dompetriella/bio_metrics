@@ -182,7 +182,8 @@ class BloodPressureEntry extends HookConsumerWidget {
                 systolicBloodPressure: systolicState.value,
                 diastolicBloodPressure: distolicState.value,
               );
-              await addBloodPressureEntryToDatabase(bloodPressureData, context)
+              await addBloodPressureEntryToDatabase(
+                      bloodPressureData, context, ref)
                   .then((value) => Navigator.pop(context));
             },
             child: Text("Enter"))

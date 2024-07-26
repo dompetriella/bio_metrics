@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:bio_metrics/app/db_functions/getting_data.dart';
 import 'package:bio_metrics/app/pages/blood_pressure.dart';
 import 'package:bio_metrics/app/pages/blood_sugar_page.dart';
 import 'package:bio_metrics/app/pages/weight_page.dart';
@@ -17,6 +18,16 @@ class PageShell extends ConsumerStatefulWidget {
 }
 
 class _PageShellState extends ConsumerState<PageShell> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getBloodPressureDataFromDatabase(context, ref);
+      await getBloodSugarDataFromDatabase(context, ref);
+      await getWeightDataFromDatabase(context, ref);
+    });
+  }
+
   PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {

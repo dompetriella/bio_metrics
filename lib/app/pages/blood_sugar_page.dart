@@ -85,7 +85,8 @@ class BloodSugarEntry extends HookConsumerWidget {
               BloodSugarData bloodPressureData = BloodSugarData(
                   userId: appState.user!.id,
                   bloodGlucose: bloodGlucoseState.value);
-              await addBloodSugarEntryToDatabase(bloodPressureData, context)
+              await addBloodSugarEntryToDatabase(
+                      bloodPressureData, context, ref)
                   .then((value) => Navigator.pop(context));
             },
             child: Text("Enter"))
@@ -129,7 +130,7 @@ class BiometricsBloodSugarDataTable extends ConsumerWidget {
                                       ? 'MM/dd/yy'
                                       : "h:mma")
                                   .format(bloodSugarList[index].dateTime!)),
-                              Text('${bloodSugarList[index].bloodGlucose}}'),
+                              Text('${bloodSugarList[index].bloodGlucose}'),
                               Text('----')
                             ],
                           ),
