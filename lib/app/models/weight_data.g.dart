@@ -9,17 +9,17 @@ part of 'weight_data.dart';
 _$WeightDataImpl _$$WeightDataImplFromJson(Map<String, dynamic> json) =>
     _$WeightDataImpl(
       id: (json['id'] as num?)?.toInt() ?? null,
-      userId: json['userId'] as String? ?? '',
-      dateTime: json['dateTime'] == null
+      userId: json['user_id'] as String? ?? '',
+      dateTime: json['created_at'] == null
           ? null
-          : DateTime.parse(json['dateTime'] as String),
+          : DateTime.parse(json['created_at'] as String),
       weight: (json['weight'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$WeightDataImplToJson(_$WeightDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'userId': instance.userId,
-      'dateTime': instance.dateTime?.toIso8601String(),
+      'user_id': instance.userId,
+      'created_at': instance.dateTime?.toIso8601String(),
       'weight': instance.weight,
     };

@@ -20,9 +20,13 @@ WeightData _$WeightDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WeightData {
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'weight')
   double get weight => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,11 @@ abstract class $WeightDataCopyWith<$Res> {
           WeightData value, $Res Function(WeightData) then) =
       _$WeightDataCopyWithImpl<$Res, WeightData>;
   @useResult
-  $Res call({int? id, String userId, DateTime? dateTime, double weight});
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'weight') double weight});
 }
 
 /// @nodoc
@@ -87,7 +95,11 @@ abstract class _$$WeightDataImplCopyWith<$Res>
       __$$WeightDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String userId, DateTime? dateTime, double weight});
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'weight') double weight});
 }
 
 /// @nodoc
@@ -131,25 +143,25 @@ class __$$WeightDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeightDataImpl implements _WeightData {
   _$WeightDataImpl(
-      {this.id = null,
-      this.userId = '',
-      this.dateTime = null,
-      this.weight = 0});
+      {@JsonKey(name: 'id') this.id = null,
+      @JsonKey(name: 'user_id') this.userId = '',
+      @JsonKey(name: 'created_at') this.dateTime = null,
+      @JsonKey(name: 'weight') this.weight = 0});
 
   factory _$WeightDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeightDataImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey()
+  @JsonKey(name: 'user_id')
   final String userId;
   @override
-  @JsonKey()
+  @JsonKey(name: 'created_at')
   final DateTime? dateTime;
   @override
-  @JsonKey()
+  @JsonKey(name: 'weight')
   final double weight;
 
   @override
@@ -189,21 +201,25 @@ class _$WeightDataImpl implements _WeightData {
 
 abstract class _WeightData implements WeightData {
   factory _WeightData(
-      {final int? id,
-      final String userId,
-      final DateTime? dateTime,
-      final double weight}) = _$WeightDataImpl;
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'user_id') final String userId,
+      @JsonKey(name: 'created_at') final DateTime? dateTime,
+      @JsonKey(name: 'weight') final double weight}) = _$WeightDataImpl;
 
   factory _WeightData.fromJson(Map<String, dynamic> json) =
       _$WeightDataImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'user_id')
   String get userId;
   @override
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime;
   @override
+  @JsonKey(name: 'weight')
   double get weight;
   @override
   @JsonKey(ignore: true)

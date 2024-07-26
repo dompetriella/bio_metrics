@@ -1,36 +1,45 @@
+import 'package:bio_metrics/app/db_functions/getting_data.dart';
 import 'package:bio_metrics/app/db_functions/inserting_data.dart';
 import 'package:bio_metrics/app/models/blood_pressure_data.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
-class BloodPressurePage extends StatelessWidget {
+class BloodPressurePage extends ConsumerWidget {
   const BloodPressurePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        Flexible(
-          child: Container(
-            color: Colors.green,
-          ),
-        ),
+        // Flexible(
+        //   child: Container(
+        //     color: Colors.green,
+        //     child: Center(
+        //         child: ElevatedButton(
+        //             onPressed: () async {
+        //               await getBloodPressureDataFromDatabase(context, ref);
+        //             },
+        //             child: Text('Get Data'))),
+        //   ),
+        // ),
         SizedBox(
           height: 16,
         ),
-        BiometricsDataTableTitle(),
-        BiometricsDataTable()
+        BiometricsDataTableTitle(
+          titles: ['DateTime', 'Blood Pressure', 'Range'],
+        ),
+        BiometricsBloodPressureDataTable()
       ],
     );
   }
 }
 
 class BiometricsDataTableTitle extends StatelessWidget {
-  const BiometricsDataTableTitle({
-    super.key,
-  });
+  final List<String> titles;
+  const BiometricsDataTableTitle({super.key, required this.titles});
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +47,20 @@ class BiometricsDataTableTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 60.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [Text('Date'), Text('Pressure'), Text('Range')],
+        children: [for (String title in titles) Text(title)],
       ),
     );
   }
 }
 
-class BiometricsDataTable extends StatelessWidget {
-  const BiometricsDataTable({
+class BiometricsBloodPressureDataTable extends ConsumerWidget {
+  const BiometricsBloodPressureDataTable({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    List<int> list = List<int>.generate(10000, (i) => i);
+  Widget build(BuildContext context, WidgetRef ref) {
+    var bloodPressureList = ref.watch(appStateProvider).bloodPressureData;
     return Flexible(
       child: Container(
         decoration: BoxDecoration(
@@ -60,7 +69,7 @@ class BiometricsDataTable extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView.builder(
-            itemCount: list.length,
+            itemCount: bloodPressureList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(4.0),
@@ -75,9 +84,14 @@ class BiometricsDataTable extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('12/24/95'),
-                              Text('120 / 80'),
-                              Text('HIGH (D)')
+                              Text(DateFormat(DateTime.now().day ==
+                                          bloodPressureList[index].dateTime!.day
+                                      ? 'MM/dd/yy'
+                                      : "h:mma")
+                                  .format(bloodPressureList[index].dateTime!)),
+                              Text(
+                                  '${bloodPressureList[index].systolicBloodPressure}/${bloodPressureList[index].diastolicBloodPressure}'),
+                              Text('----')
                             ],
                           ),
                         ))),

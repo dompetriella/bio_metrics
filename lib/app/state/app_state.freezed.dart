@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppStateData {
   User? get user => throw _privateConstructorUsedError;
   int get currentPageIndex => throw _privateConstructorUsedError;
+  List<BloodPressureData> get bloodPressureData =>
+      throw _privateConstructorUsedError;
+  List<BloodSugarData> get bloodSugarData => throw _privateConstructorUsedError;
+  List<WeightData> get weightData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateDataCopyWith<AppStateData> get copyWith =>
@@ -30,7 +34,12 @@ abstract class $AppStateDataCopyWith<$Res> {
           AppStateData value, $Res Function(AppStateData) then) =
       _$AppStateDataCopyWithImpl<$Res, AppStateData>;
   @useResult
-  $Res call({User? user, int currentPageIndex});
+  $Res call(
+      {User? user,
+      int currentPageIndex,
+      List<BloodPressureData> bloodPressureData,
+      List<BloodSugarData> bloodSugarData,
+      List<WeightData> weightData});
 }
 
 /// @nodoc
@@ -48,6 +57,9 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
   $Res call({
     Object? user = freezed,
     Object? currentPageIndex = null,
+    Object? bloodPressureData = null,
+    Object? bloodSugarData = null,
+    Object? weightData = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -58,6 +70,18 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
           ? _value.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      bloodPressureData: null == bloodPressureData
+          ? _value.bloodPressureData
+          : bloodPressureData // ignore: cast_nullable_to_non_nullable
+              as List<BloodPressureData>,
+      bloodSugarData: null == bloodSugarData
+          ? _value.bloodSugarData
+          : bloodSugarData // ignore: cast_nullable_to_non_nullable
+              as List<BloodSugarData>,
+      weightData: null == weightData
+          ? _value.weightData
+          : weightData // ignore: cast_nullable_to_non_nullable
+              as List<WeightData>,
     ) as $Val);
   }
 }
@@ -70,7 +94,12 @@ abstract class _$$AppStateDataImplCopyWith<$Res>
       __$$AppStateDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({User? user, int currentPageIndex});
+  $Res call(
+      {User? user,
+      int currentPageIndex,
+      List<BloodPressureData> bloodPressureData,
+      List<BloodSugarData> bloodSugarData,
+      List<WeightData> weightData});
 }
 
 /// @nodoc
@@ -86,6 +115,9 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? currentPageIndex = null,
+    Object? bloodPressureData = null,
+    Object? bloodSugarData = null,
+    Object? weightData = null,
   }) {
     return _then(_$AppStateDataImpl(
       user: freezed == user
@@ -96,6 +128,18 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
           ? _value.currentPageIndex
           : currentPageIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      bloodPressureData: null == bloodPressureData
+          ? _value._bloodPressureData
+          : bloodPressureData // ignore: cast_nullable_to_non_nullable
+              as List<BloodPressureData>,
+      bloodSugarData: null == bloodSugarData
+          ? _value._bloodSugarData
+          : bloodSugarData // ignore: cast_nullable_to_non_nullable
+              as List<BloodSugarData>,
+      weightData: null == weightData
+          ? _value._weightData
+          : weightData // ignore: cast_nullable_to_non_nullable
+              as List<WeightData>,
     ));
   }
 }
@@ -103,7 +147,15 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AppStateDataImpl implements _AppStateData {
-  _$AppStateDataImpl({this.user = null, this.currentPageIndex = 0});
+  _$AppStateDataImpl(
+      {this.user = null,
+      this.currentPageIndex = 0,
+      final List<BloodPressureData> bloodPressureData = const [],
+      final List<BloodSugarData> bloodSugarData = const [],
+      final List<WeightData> weightData = const []})
+      : _bloodPressureData = bloodPressureData,
+        _bloodSugarData = bloodSugarData,
+        _weightData = weightData;
 
   @override
   @JsonKey()
@@ -111,10 +163,37 @@ class _$AppStateDataImpl implements _AppStateData {
   @override
   @JsonKey()
   final int currentPageIndex;
+  final List<BloodPressureData> _bloodPressureData;
+  @override
+  @JsonKey()
+  List<BloodPressureData> get bloodPressureData {
+    if (_bloodPressureData is EqualUnmodifiableListView)
+      return _bloodPressureData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bloodPressureData);
+  }
+
+  final List<BloodSugarData> _bloodSugarData;
+  @override
+  @JsonKey()
+  List<BloodSugarData> get bloodSugarData {
+    if (_bloodSugarData is EqualUnmodifiableListView) return _bloodSugarData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bloodSugarData);
+  }
+
+  final List<WeightData> _weightData;
+  @override
+  @JsonKey()
+  List<WeightData> get weightData {
+    if (_weightData is EqualUnmodifiableListView) return _weightData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weightData);
+  }
 
   @override
   String toString() {
-    return 'AppStateData(user: $user, currentPageIndex: $currentPageIndex)';
+    return 'AppStateData(user: $user, currentPageIndex: $currentPageIndex, bloodPressureData: $bloodPressureData, bloodSugarData: $bloodSugarData, weightData: $weightData)';
   }
 
   @override
@@ -124,11 +203,23 @@ class _$AppStateDataImpl implements _AppStateData {
             other is _$AppStateDataImpl &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.currentPageIndex, currentPageIndex) ||
-                other.currentPageIndex == currentPageIndex));
+                other.currentPageIndex == currentPageIndex) &&
+            const DeepCollectionEquality()
+                .equals(other._bloodPressureData, _bloodPressureData) &&
+            const DeepCollectionEquality()
+                .equals(other._bloodSugarData, _bloodSugarData) &&
+            const DeepCollectionEquality()
+                .equals(other._weightData, _weightData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, currentPageIndex);
+  int get hashCode => Object.hash(
+      runtimeType,
+      user,
+      currentPageIndex,
+      const DeepCollectionEquality().hash(_bloodPressureData),
+      const DeepCollectionEquality().hash(_bloodSugarData),
+      const DeepCollectionEquality().hash(_weightData));
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +229,23 @@ class _$AppStateDataImpl implements _AppStateData {
 }
 
 abstract class _AppStateData implements AppStateData {
-  factory _AppStateData({final User? user, final int currentPageIndex}) =
-      _$AppStateDataImpl;
+  factory _AppStateData(
+      {final User? user,
+      final int currentPageIndex,
+      final List<BloodPressureData> bloodPressureData,
+      final List<BloodSugarData> bloodSugarData,
+      final List<WeightData> weightData}) = _$AppStateDataImpl;
 
   @override
   User? get user;
   @override
   int get currentPageIndex;
+  @override
+  List<BloodPressureData> get bloodPressureData;
+  @override
+  List<BloodSugarData> get bloodSugarData;
+  @override
+  List<WeightData> get weightData;
   @override
   @JsonKey(ignore: true)
   _$$AppStateDataImplCopyWith<_$AppStateDataImpl> get copyWith =>

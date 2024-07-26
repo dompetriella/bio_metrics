@@ -6,11 +6,15 @@ part 'blood_pressure_data.g.dart';
 @freezed
 class BloodPressureData with _$BloodPressureData {
   factory BloodPressureData({
-    @Default(null) int? id,
-    @Default('') String userId,
-    @Default(null) DateTime? dateTime,
-    @Default(0) int systolicBloodPressure,
-    @Default(0) int diastolicBloodPressure,
+    @Default(null) @JsonKey(name: 'id') int? id,
+    @Default('') @JsonKey(name: 'user_id') String userId,
+    @Default(null) @JsonKey(name: 'created_at') DateTime? dateTime,
+    @Default(0)
+    @JsonKey(name: 'systolic_blood_pressure')
+    int systolicBloodPressure,
+    @Default(0)
+    @JsonKey(name: 'diastolic_blood_pressure')
+    int diastolicBloodPressure,
   }) = _BloodPressureData;
   factory BloodPressureData.fromJson(Map<String, dynamic> json) =>
       _$BloodPressureDataFromJson(json);

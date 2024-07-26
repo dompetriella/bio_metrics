@@ -20,9 +20,13 @@ BloodSugarData _$BloodSugarDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BloodSugarData {
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'blood_sugar')
   int get bloodGlucose => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,11 @@ abstract class $BloodSugarDataCopyWith<$Res> {
           BloodSugarData value, $Res Function(BloodSugarData) then) =
       _$BloodSugarDataCopyWithImpl<$Res, BloodSugarData>;
   @useResult
-  $Res call({int? id, String userId, DateTime? dateTime, int bloodGlucose});
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'blood_sugar') int bloodGlucose});
 }
 
 /// @nodoc
@@ -87,7 +95,11 @@ abstract class _$$BloodSugarDataImplCopyWith<$Res>
       __$$BloodSugarDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String userId, DateTime? dateTime, int bloodGlucose});
+  $Res call(
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'blood_sugar') int bloodGlucose});
 }
 
 /// @nodoc
@@ -131,25 +143,25 @@ class __$$BloodSugarDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BloodSugarDataImpl implements _BloodSugarData {
   _$BloodSugarDataImpl(
-      {this.id = null,
-      this.userId = '',
-      this.dateTime = null,
-      this.bloodGlucose = 0});
+      {@JsonKey(name: 'id') this.id = null,
+      @JsonKey(name: 'user_id') this.userId = '',
+      @JsonKey(name: 'created_at') this.dateTime = null,
+      @JsonKey(name: 'blood_sugar') this.bloodGlucose = 0});
 
   factory _$BloodSugarDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$BloodSugarDataImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey()
+  @JsonKey(name: 'user_id')
   final String userId;
   @override
-  @JsonKey()
+  @JsonKey(name: 'created_at')
   final DateTime? dateTime;
   @override
-  @JsonKey()
+  @JsonKey(name: 'blood_sugar')
   final int bloodGlucose;
 
   @override
@@ -192,21 +204,26 @@ class _$BloodSugarDataImpl implements _BloodSugarData {
 
 abstract class _BloodSugarData implements BloodSugarData {
   factory _BloodSugarData(
-      {final int? id,
-      final String userId,
-      final DateTime? dateTime,
-      final int bloodGlucose}) = _$BloodSugarDataImpl;
+          {@JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'user_id') final String userId,
+          @JsonKey(name: 'created_at') final DateTime? dateTime,
+          @JsonKey(name: 'blood_sugar') final int bloodGlucose}) =
+      _$BloodSugarDataImpl;
 
   factory _BloodSugarData.fromJson(Map<String, dynamic> json) =
       _$BloodSugarDataImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'user_id')
   String get userId;
   @override
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime;
   @override
+  @JsonKey(name: 'blood_sugar')
   int get bloodGlucose;
   @override
   @JsonKey(ignore: true)

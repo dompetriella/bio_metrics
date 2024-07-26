@@ -20,10 +20,15 @@ BloodPressureData _$BloodPressureDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BloodPressureData {
+  @JsonKey(name: 'id')
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'systolic_blood_pressure')
   int get systolicBloodPressure => throw _privateConstructorUsedError;
+  @JsonKey(name: 'diastolic_blood_pressure')
   int get diastolicBloodPressure => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,11 +44,11 @@ abstract class $BloodPressureDataCopyWith<$Res> {
       _$BloodPressureDataCopyWithImpl<$Res, BloodPressureData>;
   @useResult
   $Res call(
-      {int? id,
-      String userId,
-      DateTime? dateTime,
-      int systolicBloodPressure,
-      int diastolicBloodPressure});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'systolic_blood_pressure') int systolicBloodPressure,
+      @JsonKey(name: 'diastolic_blood_pressure') int diastolicBloodPressure});
 }
 
 /// @nodoc
@@ -99,11 +104,11 @@ abstract class _$$BloodPressureDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String userId,
-      DateTime? dateTime,
-      int systolicBloodPressure,
-      int diastolicBloodPressure});
+      {@JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'created_at') DateTime? dateTime,
+      @JsonKey(name: 'systolic_blood_pressure') int systolicBloodPressure,
+      @JsonKey(name: 'diastolic_blood_pressure') int diastolicBloodPressure});
 }
 
 /// @nodoc
@@ -152,29 +157,30 @@ class __$$BloodPressureDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BloodPressureDataImpl implements _BloodPressureData {
   _$BloodPressureDataImpl(
-      {this.id = null,
-      this.userId = '',
-      this.dateTime = null,
-      this.systolicBloodPressure = 0,
+      {@JsonKey(name: 'id') this.id = null,
+      @JsonKey(name: 'user_id') this.userId = '',
+      @JsonKey(name: 'created_at') this.dateTime = null,
+      @JsonKey(name: 'systolic_blood_pressure') this.systolicBloodPressure = 0,
+      @JsonKey(name: 'diastolic_blood_pressure')
       this.diastolicBloodPressure = 0});
 
   factory _$BloodPressureDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$BloodPressureDataImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: 'id')
   final int? id;
   @override
-  @JsonKey()
+  @JsonKey(name: 'user_id')
   final String userId;
   @override
-  @JsonKey()
+  @JsonKey(name: 'created_at')
   final DateTime? dateTime;
   @override
-  @JsonKey()
+  @JsonKey(name: 'systolic_blood_pressure')
   final int systolicBloodPressure;
   @override
-  @JsonKey()
+  @JsonKey(name: 'diastolic_blood_pressure')
   final int diastolicBloodPressure;
 
   @override
@@ -219,24 +225,30 @@ class _$BloodPressureDataImpl implements _BloodPressureData {
 
 abstract class _BloodPressureData implements BloodPressureData {
   factory _BloodPressureData(
-      {final int? id,
-      final String userId,
-      final DateTime? dateTime,
-      final int systolicBloodPressure,
+      {@JsonKey(name: 'id') final int? id,
+      @JsonKey(name: 'user_id') final String userId,
+      @JsonKey(name: 'created_at') final DateTime? dateTime,
+      @JsonKey(name: 'systolic_blood_pressure') final int systolicBloodPressure,
+      @JsonKey(name: 'diastolic_blood_pressure')
       final int diastolicBloodPressure}) = _$BloodPressureDataImpl;
 
   factory _BloodPressureData.fromJson(Map<String, dynamic> json) =
       _$BloodPressureDataImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   int? get id;
   @override
+  @JsonKey(name: 'user_id')
   String get userId;
   @override
+  @JsonKey(name: 'created_at')
   DateTime? get dateTime;
   @override
+  @JsonKey(name: 'systolic_blood_pressure')
   int get systolicBloodPressure;
   @override
+  @JsonKey(name: 'diastolic_blood_pressure')
   int get diastolicBloodPressure;
   @override
   @JsonKey(ignore: true)

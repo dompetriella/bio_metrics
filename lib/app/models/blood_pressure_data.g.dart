@@ -10,22 +10,22 @@ _$BloodPressureDataImpl _$$BloodPressureDataImplFromJson(
         Map<String, dynamic> json) =>
     _$BloodPressureDataImpl(
       id: (json['id'] as num?)?.toInt() ?? null,
-      userId: json['userId'] as String? ?? '',
-      dateTime: json['dateTime'] == null
+      userId: json['user_id'] as String? ?? '',
+      dateTime: json['created_at'] == null
           ? null
-          : DateTime.parse(json['dateTime'] as String),
+          : DateTime.parse(json['created_at'] as String),
       systolicBloodPressure:
-          (json['systolicBloodPressure'] as num?)?.toInt() ?? 0,
+          (json['systolic_blood_pressure'] as num?)?.toInt() ?? 0,
       diastolicBloodPressure:
-          (json['diastolicBloodPressure'] as num?)?.toInt() ?? 0,
+          (json['diastolic_blood_pressure'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$BloodPressureDataImplToJson(
         _$BloodPressureDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'userId': instance.userId,
-      'dateTime': instance.dateTime?.toIso8601String(),
-      'systolicBloodPressure': instance.systolicBloodPressure,
-      'diastolicBloodPressure': instance.diastolicBloodPressure,
+      'user_id': instance.userId,
+      'created_at': instance.dateTime?.toIso8601String(),
+      'systolic_blood_pressure': instance.systolicBloodPressure,
+      'diastolic_blood_pressure': instance.diastolicBloodPressure,
     };
