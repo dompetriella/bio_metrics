@@ -34,7 +34,7 @@ class LoginPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Bio Metrics'),
+        title: Center(child: Text('Bio Metrics')),
       ),
       body: Center(
         child: Padding(

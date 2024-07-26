@@ -41,12 +41,14 @@ class _PageShellState extends ConsumerState<PageShell> {
           2 => Colors.orange[300],
           _ => Theme.of(context).colorScheme.inversePrimary
         },
-        title: Text(switch (appState.currentPageIndex) {
-          0 => "Blood Pressure",
-          1 => "Blood Sugar",
-          2 => "Weight",
-          _ => "Page?"
-        }),
+        title: Center(
+          child: Text(switch (appState.currentPageIndex) {
+            0 => "Blood Pressure",
+            1 => "Blood Sugar",
+            2 => "Weight",
+            _ => "Page?"
+          }),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
