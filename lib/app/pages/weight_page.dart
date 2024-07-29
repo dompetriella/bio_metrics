@@ -129,7 +129,8 @@ class BiometricsWeightDataTable extends ConsumerWidget {
                                           weightList[index].dateTime!.day
                                       ? 'MM/dd/yy'
                                       : "h:mma")
-                                  .format(weightList[index].dateTime!)),
+                                  .format(
+                                      weightList[index].dateTime!.toLocal())),
                               Text('${weightList[index].weight}'),
                               Text('----')
                             ],

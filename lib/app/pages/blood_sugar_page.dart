@@ -129,7 +129,9 @@ class BiometricsBloodSugarDataTable extends ConsumerWidget {
                                           bloodSugarList[index].dateTime!.day
                                       ? 'MM/dd/yy'
                                       : "h:mma")
-                                  .format(bloodSugarList[index].dateTime!)),
+                                  .format(bloodSugarList[index]
+                                      .dateTime!
+                                      .toLocal())),
                               Text('${bloodSugarList[index].bloodGlucose}'),
                               Text('----')
                             ],

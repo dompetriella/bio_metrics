@@ -35,14 +35,16 @@ class AppState extends _$AppState {
   }
 
   setBloodPressureData(List<BloodPressureData> bloodPressureData) {
-    state = state.copyWith(bloodPressureData: bloodPressureData);
+    state = state.copyWith(
+        bloodPressureData: [...state.bloodPressureData, ...bloodPressureData]);
   }
 
   setBloodSugarData(List<BloodSugarData> bloodSugarData) {
-    state = state.copyWith(bloodSugarData: bloodSugarData);
+    state = state
+        .copyWith(bloodSugarData: [...state.bloodSugarData, ...bloodSugarData]);
   }
 
   setWeightData(List<WeightData> weightData) {
-    state = state.copyWith(weightData: weightData);
+    state = state.copyWith(weightData: [...state.weightData, ...weightData]);
   }
 }

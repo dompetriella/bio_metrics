@@ -88,7 +88,9 @@ class BiometricsBloodPressureDataTable extends ConsumerWidget {
                                           bloodPressureList[index].dateTime!.day
                                       ? 'MM/dd/yy'
                                       : "h:mma")
-                                  .format(bloodPressureList[index].dateTime!)),
+                                  .format(bloodPressureList[index]
+                                      .dateTime!
+                                      .toLocal())),
                               Text(
                                   '${bloodPressureList[index].systolicBloodPressure}/${bloodPressureList[index].diastolicBloodPressure}'),
                               Text('----')
@@ -102,6 +104,10 @@ class BiometricsBloodPressureDataTable extends ConsumerWidget {
       ),
     );
   }
+}
+
+funx() {
+  DateTime.now().toLocal();
 }
 
 class BloodPressureEntry extends HookConsumerWidget {
