@@ -55,6 +55,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         password = utf8.decode(base64.decode(encodedPassword!));
       } else {
         print('username/password is null');
+        setState(() => _isLoading = false);
         return;
       }
 
