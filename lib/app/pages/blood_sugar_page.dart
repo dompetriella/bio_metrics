@@ -1,11 +1,13 @@
 import 'package:bio_metrics/app/db_functions/inserting_data.dart';
 import 'package:bio_metrics/app/models/blood_sugar_data.dart';
+import 'package:bio_metrics/app/models/data_type.dart';
 import 'package:bio_metrics/app/pages/blood_pressure.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
+import 'package:bio_metrics/app/widgets/data_list.dart';
+import 'package:bio_metrics/app/widgets/table_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 class BloodSugarPage extends StatelessWidget {
   const BloodSugarPage({super.key});
@@ -22,10 +24,10 @@ class BloodSugarPage extends StatelessWidget {
         SizedBox(
           height: 16,
         ),
-        BiometricsDataTableTitle(
+        TableTitle(
           titles: ['DateTime', 'Blood Sugar', 'Range'],
         ),
-        BiometricsBloodSugarDataTable()
+        DataList(dataType: DataType.bloodSugar)
       ],
     );
   }
@@ -91,57 +93,6 @@ class BloodSugarEntry extends HookConsumerWidget {
             },
             child: Text("Enter"))
       ],
-    );
-  }
-}
-
-class BiometricsBloodSugarDataTable extends ConsumerWidget {
-  const BiometricsBloodSugarDataTable({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    var bloodSugarList = ref.watch(appStateProvider).bloodSugarData;
-    return Flexible(
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Colors.red[200]),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView.builder(
-            itemCount: bloodSugarList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 4.0, horizontal: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(DateFormat(DateTime.now().day ==
-                                          bloodSugarList[index].dateTime!.day
-                                      ? 'MM/dd/yy'
-                                      : "h:mma")
-                                  .format(bloodSugarList[index]
-                                      .dateTime!
-                                      .toLocal())),
-                              Text('${bloodSugarList[index].bloodGlucose}'),
-                              Text('----')
-                            ],
-                          ),
-                        ))),
-              );
-            },
-          ),
-        ),
-      ),
     );
   }
 }

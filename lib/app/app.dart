@@ -6,7 +6,6 @@ import 'package:bio_metrics/app/pages/blood_sugar_page.dart';
 import 'package:bio_metrics/app/pages/weight_page.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -32,15 +31,21 @@ class _PageShellState extends ConsumerState<PageShell> {
   @override
   Widget build(BuildContext context) {
     var appState = ref.watch(appStateProvider);
+    var appStateActions = ref.watch(appStateProvider.notifier);
+    Duration animationTime = Duration(milliseconds: 600);
+    Curve animationCurve = Curves.easeIn;
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: switch (appState.currentPageIndex) {
-          0 => Theme.of(context).colorScheme.inversePrimary,
-          1 => Colors.red[300],
-          2 => Colors.orange[300],
-          _ => Theme.of(context).colorScheme.inversePrimary
-        },
+        flexibleSpace: AnimatedContainer(
+            duration: animationTime,
+            curve: animationCurve,
+            color: switch (appState.currentPageIndex) {
+              0 => Theme.of(context).colorScheme.inversePrimary,
+              1 => Colors.red[300],
+              2 => Colors.orange[300],
+              _ => Theme.of(context).colorScheme.inversePrimary
+            }),
         title: Center(
           child: Text(switch (appState.currentPageIndex) {
             0 => "Blood Pressure",
@@ -55,10 +60,15 @@ class _PageShellState extends ConsumerState<PageShell> {
         padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 164),
         child: PageView(
           controller: _pageController,
+          onPageChanged: (value) {
+            appStateActions.changePageIndex(value);
+          },
           children: [BloodPressurePage(), BloodSugarPage(), WeightPage()],
         ),
       ),
-      bottomSheet: Container(
+      bottomSheet: AnimatedContainer(
+        duration: animationTime,
+        curve: animationCurve,
         decoration: BoxDecoration(
           color: switch (appState.currentPageIndex) {
             0 => Theme.of(context).colorScheme.inversePrimary,
