@@ -27,10 +27,7 @@ Future addBloodPressureEntryToDatabase(BloodPressureData bloodPressureData,
   }
 
   if (insertResponse != null) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Blood Pressure Data Added\n")));
     var appStateActions = ref.watch(appStateProvider.notifier);
-    print('weight retrived successfully');
     List<BloodPressureData> bloodPressureData =
         insertResponse.data.map((bloodPressureJson) {
       return BloodPressureData.fromJson(bloodPressureJson);
@@ -61,10 +58,7 @@ Future addBloodSugarEntryToDatabase(BloodSugarData bloodPressureData,
   }
 
   if (insertResponse != null) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Blood Sugar Data Added\n")));
     var appStateActions = ref.watch(appStateProvider.notifier);
-    print('blood sugar retrived successfully');
     List<BloodSugarData> bloodSugarData =
         insertResponse.data.map((bloodSugarJson) {
       return BloodSugarData.fromJson(bloodSugarJson);
@@ -95,10 +89,7 @@ Future addWeightEntryToDatabase(
   }
 
   if (insertResponse != null) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text("Weight Data Added\n")));
     var appStateActions = ref.watch(appStateProvider.notifier);
-    print('weight retrived successfully');
     List<WeightData> weightData = insertResponse.data.map((weightDataJson) {
       return WeightData.fromJson(weightDataJson);
     }).toList();

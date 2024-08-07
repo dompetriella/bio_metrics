@@ -9,20 +9,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class BloodSugarPage extends StatelessWidget {
+class BloodSugarPage extends ConsumerWidget {
   const BloodSugarPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var appState = ref.watch(appStateProvider);
+    var appStateActions = ref.watch(appStateProvider.notifier);
     return Column(
       children: [
-        // Flexible(
-        //   child: Container(
-        //     color: Colors.green,
-        //   ),
-        // ),
+        LineChartExpansionToggle(
+          onTap: appStateActions.toggleBloodSugarGraphExpand,
+          isExpanded: appState.bloodSugarGraphExpanded,
+        ),
+        if (appState.bloodSugarGraphExpanded)
+          DataLineChart(
+            dataType: DataType.bloodSugar,
+          ),
         SizedBox(
-          height: 16,
+          height: 8,
         ),
         TableTitle(
           titles: ['DateTime', 'Blood Sugar', 'Range'],

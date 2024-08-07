@@ -10,23 +10,25 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class WeightPage extends StatelessWidget {
+class WeightPage extends ConsumerWidget {
   const WeightPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var appState = ref.watch(appStateProvider);
+    var appStateActions = ref.watch(appStateProvider.notifier);
     return Column(
       children: [
-        // Flexible(
-        //   child: Container(
-        //     color: Colors.green,
-        //     child: Center(
-        //         child:
-        //             ElevatedButton(onPressed: () {}, child: Text('Get Data'))),
-        //   ),
-        // ),
+        LineChartExpansionToggle(
+          onTap: appStateActions.toggleWeightGraphExpand,
+          isExpanded: appState.weightGraphExpanded,
+        ),
+        if (appState.weightGraphExpanded)
+          DataLineChart(
+            dataType: DataType.weight,
+          ),
         SizedBox(
-          height: 16,
+          height: 8,
         ),
         TableTitle(
           titles: ['DateTime', 'Weight', '% Change'],
