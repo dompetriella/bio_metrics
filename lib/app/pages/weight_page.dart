@@ -3,6 +3,7 @@ import 'package:bio_metrics/app/models/data_type.dart';
 import 'package:bio_metrics/app/models/weight_data.dart';
 import 'package:bio_metrics/app/pages/blood_pressure.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
+import 'package:bio_metrics/app/widgets/data_line_chart.dart';
 import 'package:bio_metrics/app/widgets/data_list.dart';
 import 'package:bio_metrics/app/widgets/table_title.dart';
 import 'package:flutter/material.dart';

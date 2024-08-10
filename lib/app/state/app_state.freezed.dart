@@ -192,9 +192,9 @@ class _$AppStateDataImpl implements _AppStateData {
       final List<BloodPressureData> bloodPressureData = const [],
       final List<BloodSugarData> bloodSugarData = const [],
       final List<WeightData> weightData = const [],
-      this.bloodPressureGraphExpanded = true,
-      this.bloodSugarGraphExpanded = true,
-      this.weightGraphExpanded = true})
+      this.bloodPressureGraphExpanded = false,
+      this.bloodSugarGraphExpanded = false,
+      this.weightGraphExpanded = false})
       : _bloodPressureData = bloodPressureData,
         _bloodSugarData = bloodSugarData,
         _weightData = weightData;

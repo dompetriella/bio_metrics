@@ -43,44 +43,59 @@ class BloodPressureDataTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10))),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8),
+                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy').format(
-                        bloodPressureDataList[index].dateTime!.toLocal())),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '${bloodPressureDataList[index].systolicBloodPressure}',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: bloodPressureDataList[index]
-                                          .systolicBloodPressure >=
-                                      highSystolicBloodPressure
-                                  ? Theme.of(context).colorScheme.error
-                                  : null),
-                        ),
-                        Container(
-                          width: 32,
-                          height: 1,
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                        Text(
-                          '${bloodPressureDataList[index].diastolicBloodPressure}',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: bloodPressureDataList[index]
-                                          .diastolicBloodPressure >=
-                                      highDiastolicBloodPressure
-                                  ? Theme.of(context).colorScheme.error
-                                  : null),
-                        ),
-                      ],
+                    SizedBox(
+                      width: 72,
+                      child: Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
+                          .format(bloodPressureDataList[index]
+                              .dateTime!
+                              .toLocal())),
                     ),
-                    Text(determineHighBloodPressureString(
-                        bloodPressureDataList[index]))
+                    SizedBox(
+                      width: 72,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${bloodPressureDataList[index].systolicBloodPressure}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: bloodPressureDataList[index]
+                                            .systolicBloodPressure >=
+                                        highSystolicBloodPressure
+                                    ? Theme.of(context).colorScheme.error
+                                    : null),
+                          ),
+                          Container(
+                            width: 32,
+                            height: 1,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                          Text(
+                            '${bloodPressureDataList[index].diastolicBloodPressure}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: bloodPressureDataList[index]
+                                            .diastolicBloodPressure >=
+                                        highDiastolicBloodPressure
+                                    ? Theme.of(context).colorScheme.error
+                                    : null),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 72,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(determineHighBloodPressureString(
+                            bloodPressureDataList[index])),
+                      ),
+                    )
                   ],
                 ),
               ))),

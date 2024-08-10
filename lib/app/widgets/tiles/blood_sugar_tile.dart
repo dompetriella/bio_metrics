@@ -40,14 +40,27 @@ class BloodSugarDataTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10))),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
-                        .format(bloodSugarList[index].dateTime!.toLocal())),
-                    Text('${bloodSugarList[index].bloodGlucose}'),
-                    Text(determineBloodSugar(bloodSugarList[index]))
+                    SizedBox(
+                      width: 72,
+                      child: Center(
+                        child: Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
+                            .format(bloodSugarList[index].dateTime!.toLocal())),
+                      ),
+                    ),
+                    SizedBox(
+                        width: 72,
+                        child: Center(
+                            child:
+                                Text('${bloodSugarList[index].bloodGlucose}'))),
+                    SizedBox(
+                        width: 72,
+                        child: Center(
+                            child: Text(
+                                determineBloodSugar(bloodSugarList[index]))))
                   ],
                 ),
               ))),

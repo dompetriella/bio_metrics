@@ -43,15 +43,28 @@ class WeightDataTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10))),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8),
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
-                        .format(weightList[index].dateTime!.toLocal())),
-                    Text('${weightList[index].weight}'),
-                    Text(determineWeightGainPercentage(
-                        weightList, index, index + 1))
+                    SizedBox(
+                      width: 72,
+                      child: Center(
+                        child: Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
+                            .format(weightList[index].dateTime!.toLocal())),
+                      ),
+                    ),
+                    SizedBox(
+                        width: 72,
+                        child:
+                            Center(child: Text('${weightList[index].weight}'))),
+                    SizedBox(
+                      width: 72,
+                      child: Center(
+                        child: Text(determineWeightGainPercentage(
+                            weightList, index, index + 1)),
+                      ),
+                    )
                   ],
                 ),
               ))),
