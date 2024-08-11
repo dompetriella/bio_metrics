@@ -99,14 +99,12 @@ class DataLineChart extends ConsumerWidget {
                           bottomTitles: AxisTitles(sideTitles: SideTitles()),
                           rightTitles: AxisTitles(),
                           topTitles: AxisTitles()),
-                      minX: createDMYMin(
-                          appState.bloodPressureData.last.dateTime!),
-                      maxX: createDMYMax(
-                          appState.bloodPressureData.first.dateTime!),
+                      minX: getXMin(data),
+                      maxX: getXMax(data),
                       minY: dataType == DataType.bloodPressure
-                          ? getNumberMin(diastolicData!)
-                          : getNumberMin(data),
-                      maxY: getNumberMax(data),
+                          ? getYMin(diastolicData!)
+                          : getYMin(data),
+                      maxY: getYMax(data),
                       lineBarsData: [
                         LineChartBarData(
                             color: Theme.of(context).colorScheme.primary,
@@ -134,14 +132,28 @@ class DataLineChart extends ConsumerWidget {
 
 // double getNumberMin(List<double> data) {}
 
-double getNumberMax(List<DataPoint> data) {
+double getYMax(List<DataPoint> data) {
   double max = data.map((e) => e.data).reduce((a, b) => a > b ? a : b);
-  return max + 10;
+  return max + 5;
 }
 
-double getNumberMin(List<DataPoint> data) {
+double getYMin(List<DataPoint> data) {
   double min = data.map((e) => e.data).reduce((a, b) => a < b ? a : b);
-  return min - 10;
+  return min - 5;
+}
+
+double getXMax(List<DataPoint> data) {
+  double max = data
+      .map((e) => createDayMonthYearTime(e.dateTime!))
+      .reduce((a, b) => a > b ? a : b);
+  return max;
+}
+
+double getXMin(List<DataPoint> data) {
+  double min = data
+      .map((e) => createDayMonthYearTime(e.dateTime!))
+      .reduce((a, b) => a < b ? a : b);
+  return min;
 }
 
 double getNumberAverage(List<DataPoint> data) {
@@ -153,19 +165,15 @@ double getNumberAverage(List<DataPoint> data) {
 }
 
 double createDayMonthYearTime(DateTime date) {
+  double monthSum = 0;
+  List<int> months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  for (var i = 0; i < date.month; i++) {
+    monthSum += months[i];
+  }
+
   var day = date.day;
-  var month = date.month;
+  var month = monthSum;
   var year = date.year;
-  var time = date.millisecondsSinceEpoch;
-  var dayMonthYear = day + month + year + time;
-
+  var dayMonthYear = day + month + year;
   return dayMonthYear.toDouble();
-}
-
-double createDMYMin(DateTime date) {
-  return createDayMonthYearTime(date) - 10;
-}
-
-double createDMYMax(DateTime date) {
-  return createDayMonthYearTime(date) + 10;
 }
