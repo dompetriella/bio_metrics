@@ -16,9 +16,9 @@ class AppStateData with _$AppStateData {
       @Default([]) List<BloodPressureData> bloodPressureData,
       @Default([]) List<BloodSugarData> bloodSugarData,
       @Default([]) List<WeightData> weightData,
-      @Default(false) bool bloodPressureGraphExpanded,
-      @Default(false) bool bloodSugarGraphExpanded,
-      @Default(false) bool weightGraphExpanded}) = _AppStateData;
+      @Default(true) bool bloodPressureGraphExpanded,
+      @Default(true) bool bloodSugarGraphExpanded,
+      @Default(true) bool weightGraphExpanded}) = _AppStateData;
 }
 
 @Riverpod(keepAlive: true)
