@@ -24,9 +24,10 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: SafeArea(
+            maintainBottomViewPadding: true,
             child: LoginPage(
-          prefs: prefs,
-        )));
+              prefs: prefs,
+            )));
   }
 }
 

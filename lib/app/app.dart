@@ -56,14 +56,16 @@ class _PageShellState extends ConsumerState<PageShell> {
         ),
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 164),
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (value) {
-            appStateActions.changePageIndex(value);
-          },
-          children: [BloodPressurePage(), BloodSugarPage(), WeightPage()],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 160),
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (value) {
+              appStateActions.changePageIndex(value);
+            },
+            children: [BloodPressurePage(), BloodSugarPage(), WeightPage()],
+          ),
         ),
       ),
       bottomSheet: AnimatedContainer(
@@ -78,7 +80,7 @@ class _PageShellState extends ConsumerState<PageShell> {
           },
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 24.0),
+          padding: const EdgeInsets.only(top: 24.0, bottom: 48),
           child: Container(
             height: 100,
             child: Row(
