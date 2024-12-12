@@ -279,9 +279,9 @@ class _$AppStateDataImpl implements _AppStateData {
       this.bloodPressureGraphExpanded = true,
       this.bloodSugarGraphExpanded = true,
       this.weightGraphExpanded = true,
-      this.bloodPressureFilter = 0,
-      this.bloodSugarFilter = 0,
-      this.weightFilter = 0,
+      this.bloodPressureFilter = 2,
+      this.bloodSugarFilter = 2,
+      this.weightFilter = 2,
       this.showBloodPressureAverage = false,
       this.showBloodSugarAverage = false,
       this.showWeightAverage = false})
