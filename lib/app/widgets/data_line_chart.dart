@@ -3,10 +3,25 @@ import 'dart:math';
 import 'package:bio_metrics/app/models/blood_pressure_data.dart';
 import 'package:bio_metrics/app/models/data_point.dart';
 import 'package:bio_metrics/app/models/data_type.dart';
+import 'package:bio_metrics/app/models/filter_timespan.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+DateTime getDateTimeFilterDate(FilterTimespan filterTime) {
+  DateTime now = DateTime.now();
+  switch (filterTime) {
+    case FilterTimespan.all:
+      return DateTime(2020, 1, 1, 0, 0);
+    case FilterTimespan.sixMonths:
+      return now.subtract(Duration(days: 6 * 30));
+    case FilterTimespan.oneMonth:
+      return now.subtract(Duration(days: 30));
+    case FilterTimespan.oneWeek:
+      return now.subtract(Duration(days: 7));
+  }
+}
 
 class DataLineChart extends ConsumerWidget {
   final DataType dataType;
@@ -17,16 +32,25 @@ class DataLineChart extends ConsumerWidget {
     var appState = ref.watch(appStateProvider);
 
     List<DataPoint> data = switch (dataType) {
-      DataType.bloodPressure => appState.bloodPressureData.map((bpdata) {
+      DataType.bloodPressure => appState.bloodPressureData
+            .where((bpdata) => bpdata.dateTime!.isAfter(getDateTimeFilterDate(
+                FilterTimespan.values[appState.bloodPressureFilter])))
+            .map((bpdata) {
           return DataPoint(
               dateTime: bpdata.dateTime,
               data: bpdata.systolicBloodPressure.toDouble());
         }).toList(),
-      DataType.bloodSugar => appState.bloodSugarData.map((bsdata) {
+      DataType.bloodSugar => appState.bloodSugarData
+            .where((bsData) => bsData.dateTime!.isAfter(getDateTimeFilterDate(
+                FilterTimespan.values[appState.bloodSugarFilter])))
+            .map((bsdata) {
           return DataPoint(
               dateTime: bsdata.dateTime, data: bsdata.bloodGlucose.toDouble());
         }).toList(),
-      DataType.weight => appState.weightData.map((wdata) {
+      DataType.weight => appState.weightData
+            .where((wdata) => wdata.dateTime!.isAfter(getDateTimeFilterDate(
+                FilterTimespan.values[appState.weightFilter])))
+            .map((wdata) {
           return DataPoint(dateTime: wdata.dateTime, data: wdata.weight);
         }).toList()
     };
@@ -34,7 +58,10 @@ class DataLineChart extends ConsumerWidget {
     List<DataPoint>? diastolicData;
 
     if (dataType == DataType.bloodPressure) {
-      diastolicData = appState.bloodPressureData.map((bpdata) {
+      diastolicData = appState.bloodPressureData
+          .where((bpdata) => bpdata.dateTime!.isAfter(getDateTimeFilterDate(
+              FilterTimespan.values[appState.bloodPressureFilter])))
+          .map((bpdata) {
         return DataPoint(
             dateTime: bpdata.dateTime,
             data: bpdata.diastolicBloodPressure.toDouble());
@@ -48,10 +75,12 @@ class DataLineChart extends ConsumerWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: switch (dataType) {
-              DataType.bloodPressure =>
-                Theme.of(context).colorScheme.inversePrimary.withOpacity(.60),
-              DataType.bloodSugar => Colors.red[200]!.withOpacity(.60),
-              DataType.weight => Colors.orange[200]!.withOpacity(.60)
+              DataType.bloodPressure => Theme.of(context)
+                  .colorScheme
+                  .inversePrimary
+                  .withValues(alpha: .60),
+              DataType.bloodSugar => Colors.red[200]!.withValues(alpha: .60),
+              DataType.weight => Colors.orange[200]!.withValues(alpha: .60)
             },
           ),
           child: data.isEmpty
@@ -62,7 +91,12 @@ class DataLineChart extends ConsumerWidget {
                   padding:
                       const EdgeInsets.only(top: 32.0, right: 32, bottom: 32),
                   child: LineChart(LineChartData(
-
+                      lineTouchData:
+                          LineTouchData(touchTooltipData: LineTouchTooltipData(
+                        getTooltipColor: (touchedSpot) {
+                          return Colors.white;
+                        },
+                      )),
                       // averages
                       extraLinesData: ExtraLinesData(horizontalLines: [
                         HorizontalLine(

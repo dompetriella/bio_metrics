@@ -6,7 +6,7 @@ part of 'app_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appStateHash() => r'71c2eb80ebb6efc397e756c674e49ec0074cb860';
+String _$appStateHash() => r'497e994f141b223afca4ee3985ec974a16acbca2';
 
 /// See also [AppState].
 @ProviderFor(AppState)
@@ -21,4 +21,4 @@ final appStateProvider = NotifierProvider<AppState, AppStateData>.internal(
 
 typedef _$AppState = Notifier<AppStateData>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

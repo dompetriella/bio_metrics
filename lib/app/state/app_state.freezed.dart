@@ -25,8 +25,16 @@ mixin _$AppStateData {
   bool get bloodPressureGraphExpanded => throw _privateConstructorUsedError;
   bool get bloodSugarGraphExpanded => throw _privateConstructorUsedError;
   bool get weightGraphExpanded => throw _privateConstructorUsedError;
+  int get bloodPressureFilter => throw _privateConstructorUsedError;
+  int get bloodSugarFilter => throw _privateConstructorUsedError;
+  int get weightFilter => throw _privateConstructorUsedError;
+  bool get showBloodPressureAverage => throw _privateConstructorUsedError;
+  bool get showBloodSugarAverage => throw _privateConstructorUsedError;
+  bool get showWeightAverage => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppStateData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppStateDataCopyWith<AppStateData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,7 +53,13 @@ abstract class $AppStateDataCopyWith<$Res> {
       List<WeightData> weightData,
       bool bloodPressureGraphExpanded,
       bool bloodSugarGraphExpanded,
-      bool weightGraphExpanded});
+      bool weightGraphExpanded,
+      int bloodPressureFilter,
+      int bloodSugarFilter,
+      int weightFilter,
+      bool showBloodPressureAverage,
+      bool showBloodSugarAverage,
+      bool showWeightAverage});
 }
 
 /// @nodoc
@@ -58,6 +72,8 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppStateData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -69,6 +85,12 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
     Object? bloodPressureGraphExpanded = null,
     Object? bloodSugarGraphExpanded = null,
     Object? weightGraphExpanded = null,
+    Object? bloodPressureFilter = null,
+    Object? bloodSugarFilter = null,
+    Object? weightFilter = null,
+    Object? showBloodPressureAverage = null,
+    Object? showBloodSugarAverage = null,
+    Object? showWeightAverage = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -103,6 +125,30 @@ class _$AppStateDataCopyWithImpl<$Res, $Val extends AppStateData>
           ? _value.weightGraphExpanded
           : weightGraphExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      bloodPressureFilter: null == bloodPressureFilter
+          ? _value.bloodPressureFilter
+          : bloodPressureFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      bloodSugarFilter: null == bloodSugarFilter
+          ? _value.bloodSugarFilter
+          : bloodSugarFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      weightFilter: null == weightFilter
+          ? _value.weightFilter
+          : weightFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      showBloodPressureAverage: null == showBloodPressureAverage
+          ? _value.showBloodPressureAverage
+          : showBloodPressureAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showBloodSugarAverage: null == showBloodSugarAverage
+          ? _value.showBloodSugarAverage
+          : showBloodSugarAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showWeightAverage: null == showWeightAverage
+          ? _value.showWeightAverage
+          : showWeightAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -123,7 +169,13 @@ abstract class _$$AppStateDataImplCopyWith<$Res>
       List<WeightData> weightData,
       bool bloodPressureGraphExpanded,
       bool bloodSugarGraphExpanded,
-      bool weightGraphExpanded});
+      bool weightGraphExpanded,
+      int bloodPressureFilter,
+      int bloodSugarFilter,
+      int weightFilter,
+      bool showBloodPressureAverage,
+      bool showBloodSugarAverage,
+      bool showWeightAverage});
 }
 
 /// @nodoc
@@ -134,6 +186,8 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
       _$AppStateDataImpl _value, $Res Function(_$AppStateDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppStateData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,6 +199,12 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
     Object? bloodPressureGraphExpanded = null,
     Object? bloodSugarGraphExpanded = null,
     Object? weightGraphExpanded = null,
+    Object? bloodPressureFilter = null,
+    Object? bloodSugarFilter = null,
+    Object? weightFilter = null,
+    Object? showBloodPressureAverage = null,
+    Object? showBloodSugarAverage = null,
+    Object? showWeightAverage = null,
   }) {
     return _then(_$AppStateDataImpl(
       user: freezed == user
@@ -179,6 +239,30 @@ class __$$AppStateDataImplCopyWithImpl<$Res>
           ? _value.weightGraphExpanded
           : weightGraphExpanded // ignore: cast_nullable_to_non_nullable
               as bool,
+      bloodPressureFilter: null == bloodPressureFilter
+          ? _value.bloodPressureFilter
+          : bloodPressureFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      bloodSugarFilter: null == bloodSugarFilter
+          ? _value.bloodSugarFilter
+          : bloodSugarFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      weightFilter: null == weightFilter
+          ? _value.weightFilter
+          : weightFilter // ignore: cast_nullable_to_non_nullable
+              as int,
+      showBloodPressureAverage: null == showBloodPressureAverage
+          ? _value.showBloodPressureAverage
+          : showBloodPressureAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showBloodSugarAverage: null == showBloodSugarAverage
+          ? _value.showBloodSugarAverage
+          : showBloodSugarAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showWeightAverage: null == showWeightAverage
+          ? _value.showWeightAverage
+          : showWeightAverage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -194,7 +278,13 @@ class _$AppStateDataImpl implements _AppStateData {
       final List<WeightData> weightData = const [],
       this.bloodPressureGraphExpanded = true,
       this.bloodSugarGraphExpanded = true,
-      this.weightGraphExpanded = true})
+      this.weightGraphExpanded = true,
+      this.bloodPressureFilter = 0,
+      this.bloodSugarFilter = 0,
+      this.weightFilter = 0,
+      this.showBloodPressureAverage = false,
+      this.showBloodSugarAverage = false,
+      this.showWeightAverage = false})
       : _bloodPressureData = bloodPressureData,
         _bloodSugarData = bloodSugarData,
         _weightData = weightData;
@@ -242,10 +332,28 @@ class _$AppStateDataImpl implements _AppStateData {
   @override
   @JsonKey()
   final bool weightGraphExpanded;
+  @override
+  @JsonKey()
+  final int bloodPressureFilter;
+  @override
+  @JsonKey()
+  final int bloodSugarFilter;
+  @override
+  @JsonKey()
+  final int weightFilter;
+  @override
+  @JsonKey()
+  final bool showBloodPressureAverage;
+  @override
+  @JsonKey()
+  final bool showBloodSugarAverage;
+  @override
+  @JsonKey()
+  final bool showWeightAverage;
 
   @override
   String toString() {
-    return 'AppStateData(user: $user, currentPageIndex: $currentPageIndex, bloodPressureData: $bloodPressureData, bloodSugarData: $bloodSugarData, weightData: $weightData, bloodPressureGraphExpanded: $bloodPressureGraphExpanded, bloodSugarGraphExpanded: $bloodSugarGraphExpanded, weightGraphExpanded: $weightGraphExpanded)';
+    return 'AppStateData(user: $user, currentPageIndex: $currentPageIndex, bloodPressureData: $bloodPressureData, bloodSugarData: $bloodSugarData, weightData: $weightData, bloodPressureGraphExpanded: $bloodPressureGraphExpanded, bloodSugarGraphExpanded: $bloodSugarGraphExpanded, weightGraphExpanded: $weightGraphExpanded, bloodPressureFilter: $bloodPressureFilter, bloodSugarFilter: $bloodSugarFilter, weightFilter: $weightFilter, showBloodPressureAverage: $showBloodPressureAverage, showBloodSugarAverage: $showBloodSugarAverage, showWeightAverage: $showWeightAverage)';
   }
 
   @override
@@ -270,7 +378,20 @@ class _$AppStateDataImpl implements _AppStateData {
                     other.bloodSugarGraphExpanded, bloodSugarGraphExpanded) ||
                 other.bloodSugarGraphExpanded == bloodSugarGraphExpanded) &&
             (identical(other.weightGraphExpanded, weightGraphExpanded) ||
-                other.weightGraphExpanded == weightGraphExpanded));
+                other.weightGraphExpanded == weightGraphExpanded) &&
+            (identical(other.bloodPressureFilter, bloodPressureFilter) ||
+                other.bloodPressureFilter == bloodPressureFilter) &&
+            (identical(other.bloodSugarFilter, bloodSugarFilter) ||
+                other.bloodSugarFilter == bloodSugarFilter) &&
+            (identical(other.weightFilter, weightFilter) ||
+                other.weightFilter == weightFilter) &&
+            (identical(
+                    other.showBloodPressureAverage, showBloodPressureAverage) ||
+                other.showBloodPressureAverage == showBloodPressureAverage) &&
+            (identical(other.showBloodSugarAverage, showBloodSugarAverage) ||
+                other.showBloodSugarAverage == showBloodSugarAverage) &&
+            (identical(other.showWeightAverage, showWeightAverage) ||
+                other.showWeightAverage == showWeightAverage));
   }
 
   @override
@@ -283,9 +404,17 @@ class _$AppStateDataImpl implements _AppStateData {
       const DeepCollectionEquality().hash(_weightData),
       bloodPressureGraphExpanded,
       bloodSugarGraphExpanded,
-      weightGraphExpanded);
+      weightGraphExpanded,
+      bloodPressureFilter,
+      bloodSugarFilter,
+      weightFilter,
+      showBloodPressureAverage,
+      showBloodSugarAverage,
+      showWeightAverage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppStateData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppStateDataImplCopyWith<_$AppStateDataImpl> get copyWith =>
@@ -301,7 +430,13 @@ abstract class _AppStateData implements AppStateData {
       final List<WeightData> weightData,
       final bool bloodPressureGraphExpanded,
       final bool bloodSugarGraphExpanded,
-      final bool weightGraphExpanded}) = _$AppStateDataImpl;
+      final bool weightGraphExpanded,
+      final int bloodPressureFilter,
+      final int bloodSugarFilter,
+      final int weightFilter,
+      final bool showBloodPressureAverage,
+      final bool showBloodSugarAverage,
+      final bool showWeightAverage}) = _$AppStateDataImpl;
 
   @override
   User? get user;
@@ -320,7 +455,22 @@ abstract class _AppStateData implements AppStateData {
   @override
   bool get weightGraphExpanded;
   @override
-  @JsonKey(ignore: true)
+  int get bloodPressureFilter;
+  @override
+  int get bloodSugarFilter;
+  @override
+  int get weightFilter;
+  @override
+  bool get showBloodPressureAverage;
+  @override
+  bool get showBloodSugarAverage;
+  @override
+  bool get showWeightAverage;
+
+  /// Create a copy of AppStateData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppStateDataImplCopyWith<_$AppStateDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

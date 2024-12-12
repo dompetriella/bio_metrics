@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bio_metrics/app/db_functions/inserting_data.dart';
 import 'package:bio_metrics/app/models/blood_pressure_data.dart';
 import 'package:bio_metrics/app/models/data_type.dart';
+import 'package:bio_metrics/app/models/filter_timespan.dart';
 import 'package:bio_metrics/app/state/app_state.dart';
 import 'package:bio_metrics/app/widgets/data_line_chart.dart';
 import 'package:bio_metrics/app/widgets/data_list.dart';
@@ -28,15 +29,8 @@ class BloodPressurePage extends ConsumerWidget {
           DataLineChart(
             dataType: DataType.bloodPressure,
           ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('All'),
-            ),
-            ElevatedButton(onPressed: () {}, child: Text('All'))
-          ],
+        FilterButtons(
+          dataType: DataType.bloodPressure,
         ),
         SizedBox(
           height: 8,
@@ -46,6 +40,88 @@ class BloodPressurePage extends ConsumerWidget {
         ),
         DataList(dataType: DataType.bloodPressure)
       ],
+    );
+  }
+}
+
+class FilterButtons extends StatelessWidget {
+  final DataType dataType;
+  const FilterButtons({super.key, required this.dataType});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        DataFilterButton(
+          filterTimespan: FilterTimespan.all,
+          dataType: dataType,
+        ),
+        DataFilterButton(
+          filterTimespan: FilterTimespan.sixMonths,
+          dataType: dataType,
+        ),
+        DataFilterButton(
+          filterTimespan: FilterTimespan.oneMonth,
+          dataType: dataType,
+        ),
+        DataFilterButton(
+          filterTimespan: FilterTimespan.oneWeek,
+          dataType: dataType,
+        ),
+      ],
+    );
+  }
+}
+
+class DataFilterButton extends ConsumerWidget {
+  final FilterTimespan filterTimespan;
+  final DataType dataType;
+  const DataFilterButton(
+      {super.key, required this.filterTimespan, required this.dataType});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch(appStateProvider);
+    final appStateActions = ref.watch(appStateProvider.notifier);
+    final buttonText = switch (filterTimespan) {
+      FilterTimespan.all => 'all',
+      FilterTimespan.sixMonths => '6mo',
+      FilterTimespan.oneMonth => '1mo',
+      FilterTimespan.oneWeek => '1wk'
+    };
+
+    final Color? borderColor = switch (dataType) {
+      DataType.bloodPressure =>
+        appState.bloodPressureFilter == filterTimespan.index
+            ? Colors.blue[500]
+            : Colors.blue[100],
+      DataType.bloodSugar => appState.bloodSugarFilter == filterTimespan.index
+          ? Colors.red[500]
+          : Colors.red[100],
+      DataType.weight => appState.weightFilter == filterTimespan.index
+          ? Colors.orange[500]
+          : Colors.orange[100]
+    };
+
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          side: BorderSide(width: 4, color: borderColor ?? Colors.transparent)),
+      onPressed: () {
+        switch (dataType) {
+          case DataType.bloodPressure:
+            appStateActions.filterBloodPressureData(filterTimespan);
+            break;
+          case DataType.bloodSugar:
+            appStateActions.filterBloodSugarData(filterTimespan);
+            break;
+          case DataType.weight:
+            appStateActions.filterWeightData(filterTimespan);
+            break;
+          default:
+        }
+      },
+      child: Text(buttonText),
     );
   }
 }

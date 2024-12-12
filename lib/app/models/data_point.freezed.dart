@@ -19,7 +19,9 @@ mixin _$DataPoint {
   DateTime? get dateTime => throw _privateConstructorUsedError;
   double get data => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DataPointCopyWith<DataPoint> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$DataPointCopyWithImpl<$Res, $Val extends DataPoint>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DataPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +84,8 @@ class __$$DataPointImplCopyWithImpl<$Res>
       _$DataPointImpl _value, $Res Function(_$DataPointImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DataPoint
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,7 +135,9 @@ class _$DataPointImpl implements _DataPoint {
   @override
   int get hashCode => Object.hash(runtimeType, dateTime, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DataPoint
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DataPointImplCopyWith<_$DataPointImpl> get copyWith =>
@@ -144,8 +152,11 @@ abstract class _DataPoint implements DataPoint {
   DateTime? get dateTime;
   @override
   double get data;
+
+  /// Create a copy of DataPoint
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DataPointImplCopyWith<_$DataPointImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -7,7 +7,7 @@ class TableTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 48.0),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [for (String title in titles) Text(title)],

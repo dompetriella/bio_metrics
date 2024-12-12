@@ -27,6 +27,9 @@ class BloodSugarPage extends ConsumerWidget {
           DataLineChart(
             dataType: DataType.bloodSugar,
           ),
+        FilterButtons(
+          dataType: DataType.bloodSugar,
+        ),
         SizedBox(
           height: 8,
         ),

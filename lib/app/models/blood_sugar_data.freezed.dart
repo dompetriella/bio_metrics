@@ -29,8 +29,12 @@ mixin _$BloodSugarData {
   @JsonKey(name: 'blood_sugar')
   int get bloodGlucose => throw _privateConstructorUsedError;
 
+  /// Serializes this BloodSugarData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BloodSugarData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BloodSugarDataCopyWith<BloodSugarData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$BloodSugarDataCopyWithImpl<$Res, $Val extends BloodSugarData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BloodSugarData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +116,8 @@ class __$$BloodSugarDataImplCopyWithImpl<$Res>
       _$BloodSugarDataImpl _value, $Res Function(_$BloodSugarDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BloodSugarData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -182,12 +190,14 @@ class _$BloodSugarDataImpl implements _BloodSugarData {
                 other.bloodGlucose == bloodGlucose));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, userId, dateTime, bloodGlucose);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BloodSugarData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BloodSugarDataImplCopyWith<_$BloodSugarDataImpl> get copyWith =>
@@ -225,8 +235,11 @@ abstract class _BloodSugarData implements BloodSugarData {
   @override
   @JsonKey(name: 'blood_sugar')
   int get bloodGlucose;
+
+  /// Create a copy of BloodSugarData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BloodSugarDataImplCopyWith<_$BloodSugarDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

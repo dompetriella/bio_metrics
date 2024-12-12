@@ -28,6 +28,9 @@ class WeightPage extends ConsumerWidget {
           DataLineChart(
             dataType: DataType.weight,
           ),
+        FilterButtons(
+          dataType: DataType.weight,
+        ),
         SizedBox(
           height: 8,
         ),

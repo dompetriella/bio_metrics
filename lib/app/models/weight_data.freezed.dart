@@ -29,8 +29,12 @@ mixin _$WeightData {
   @JsonKey(name: 'weight')
   double get weight => throw _privateConstructorUsedError;
 
+  /// Serializes this WeightData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WeightData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WeightDataCopyWith<WeightData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$WeightDataCopyWithImpl<$Res, $Val extends WeightData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WeightData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +116,8 @@ class __$$WeightDataImplCopyWithImpl<$Res>
       _$WeightDataImpl _value, $Res Function(_$WeightDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WeightData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -181,11 +189,13 @@ class _$WeightDataImpl implements _WeightData {
             (identical(other.weight, weight) || other.weight == weight));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, userId, dateTime, weight);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WeightData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WeightDataImplCopyWith<_$WeightDataImpl> get copyWith =>
@@ -221,8 +231,11 @@ abstract class _WeightData implements WeightData {
   @override
   @JsonKey(name: 'weight')
   double get weight;
+
+  /// Create a copy of WeightData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WeightDataImplCopyWith<_$WeightDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

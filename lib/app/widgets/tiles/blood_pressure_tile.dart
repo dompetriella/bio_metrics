@@ -49,10 +49,8 @@ class BloodPressureDataTile extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 72,
-                      child: Text(DateFormat(isToday ? "h:mma" : 'MM/dd/yy')
-                          .format(bloodPressureDataList[index]
-                              .dateTime!
-                              .toLocal())),
+                      child: Text(DateFormat('MM/dd/yy').format(
+                          bloodPressureDataList[index].dateTime!.toLocal())),
                     ),
                     SizedBox(
                       width: 72,

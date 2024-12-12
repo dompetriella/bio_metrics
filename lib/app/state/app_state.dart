@@ -1,5 +1,6 @@
 import 'package:bio_metrics/app/models/blood_pressure_data.dart';
 import 'package:bio_metrics/app/models/blood_sugar_data.dart';
+import 'package:bio_metrics/app/models/filter_timespan.dart';
 import 'package:bio_metrics/app/models/weight_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -10,15 +11,22 @@ part 'app_state.g.dart';
 
 @freezed
 class AppStateData with _$AppStateData {
-  factory AppStateData(
-      {@Default(null) User? user,
-      @Default(0) int currentPageIndex,
-      @Default([]) List<BloodPressureData> bloodPressureData,
-      @Default([]) List<BloodSugarData> bloodSugarData,
-      @Default([]) List<WeightData> weightData,
-      @Default(true) bool bloodPressureGraphExpanded,
-      @Default(true) bool bloodSugarGraphExpanded,
-      @Default(true) bool weightGraphExpanded}) = _AppStateData;
+  factory AppStateData({
+    @Default(null) User? user,
+    @Default(0) int currentPageIndex,
+    @Default([]) List<BloodPressureData> bloodPressureData,
+    @Default([]) List<BloodSugarData> bloodSugarData,
+    @Default([]) List<WeightData> weightData,
+    @Default(true) bool bloodPressureGraphExpanded,
+    @Default(true) bool bloodSugarGraphExpanded,
+    @Default(true) bool weightGraphExpanded,
+    @Default(0) int bloodPressureFilter,
+    @Default(0) int bloodSugarFilter,
+    @Default(0) int weightFilter,
+    @Default(false) bool showBloodPressureAverage,
+    @Default(false) bool showBloodSugarAverage,
+    @Default(false) bool showWeightAverage,
+  }) = _AppStateData;
 }
 
 @Riverpod(keepAlive: true)
@@ -62,5 +70,17 @@ class AppState extends _$AppState {
 
   void toggleWeightGraphExpand() {
     state = state.copyWith(weightGraphExpanded: !state.weightGraphExpanded);
+  }
+
+  void filterBloodPressureData(FilterTimespan filterTime) {
+    state = state.copyWith(bloodPressureFilter: filterTime.index);
+  }
+
+  void filterBloodSugarData(FilterTimespan filterTime) {
+    state = state.copyWith(bloodSugarFilter: filterTime.index);
+  }
+
+  void filterWeightData(FilterTimespan filterTime) {
+    state = state.copyWith(weightFilter: filterTime.index);
   }
 }
